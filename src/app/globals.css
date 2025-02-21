@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply bg-white text-brand-grey-neutral;
+  }
+}
+
 @layer utilities {
   .heading-1 {
     @apply text-[21px] leading-8 font-semibold;

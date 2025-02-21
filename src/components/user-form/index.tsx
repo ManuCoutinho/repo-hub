@@ -27,6 +27,7 @@ export function UserForm() {
     <form className='px-6 py-5 w-full max-w-2xl'>
       <InputSearch
         id='search'
+        placeholder='Buscar usuário'
         value={value}
         onChange={(e) => {
           setValue(e.target.value)

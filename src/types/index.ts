@@ -1,20 +1,23 @@
+export type Repository = {
+  id: number
+  name: string
+  full_name: string
+  description: string | null
+  updated_at: Date
+  created_at: Date
+  language: string | null
+  stargazers_count: number
+}
+export type User = {
+  avatar_url: string
+  bio: string
+  name: string
+  login: string
+}
+
 export type UserData = {
-  user: {
-    avatar_url: string
-    bio: string
-    name: string
-    login: string
-  }
-  repos: {
-    id: number
-    name: string
-    full_name: string
-    description: string | null
-    updated_at: Date
-    created_at: Date
-    language: string | null
-    stargazers_count: number
-  }[]
+  user: User
+  repos: Repository[]
 }
 
 export type UserContextType = {

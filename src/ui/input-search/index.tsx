@@ -8,29 +8,30 @@ const InputSearch = forwardRef(
     ref?: ForwardedRef<HTMLInputElement>
   ) => {
     return (
-      <div
-        className={cm(
-          'px-4 inline-flex rounded border border-brand-border-line focus:ring-brand-border-line peer bg-white w-full py-2'
-        )}
-      >
+      <div>
         <label htmlFor={id} className='sr-only'>
-          Buscar usuário
+          Buscar
         </label>
-        <input
-          type='text'
-          placeholder='Buscar usuário'
-          inputMode='text'
-          className={cm(
-            'w-full outline-none border-none placeholder:text-brand-placeholder placeholder:text-sm text-sm bg-white placeholder:bg-inherit',
-            className
-          )}
-          aria-errormessage=''
-          aria-invalid={!!error}
-          id={id}
-          ref={ref}
-          {...rest}
-        />
-        <Icon name='search' className='text-brand-placeholder' />
+        <div className={cm('relative ')}>
+          <input
+            type='text'
+            inputMode='text'
+            className={cm(
+              'appearance-none block w-full px-4 rounded border border-brand-border-line bg-white py-2 placeholder:bg-white ',
+              'placeholder:text-brand-placeholder placeholder:text-sm text-sm',
+              'focus:outline-transparent focus:ring focus:ring-brand-primary-light',
+              className
+            )}
+            aria-errormessage=''
+            aria-invalid={!!error}
+            id={id}
+            ref={ref}
+            {...rest}
+          />
+          <span className='flex items-center absolute inset-y-0 end-4'>
+            <Icon name='search' className='text-brand-placeholder ' />
+          </span>
+        </div>
       </div>
     )
   }
