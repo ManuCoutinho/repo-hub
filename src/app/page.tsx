@@ -1,7 +1,10 @@
+'use client'
+import { SearchView } from '@/views/Search'
+
 export default function Home() {
   return (
-    <main>
-      <h1 className='text-2xl uppercase'>hello world</h1>
+    <main className='w-full grid place-content-center'>
+      <SearchView />
     </main>
   )
 }

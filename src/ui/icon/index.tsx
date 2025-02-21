@@ -7,7 +7,7 @@ export function Icon({ name, size = 'md', className, ...rest }: IconType) {
   const IconSelected = IconList[name]
 
   return (
-    <i {...rest} className={cm('z-0 block', className)}>
+    <i {...rest} className={cm('z-0 block pointer-events-none', className)}>
       <IconSelected size={parseSize(size)} />
     </i>
   )
