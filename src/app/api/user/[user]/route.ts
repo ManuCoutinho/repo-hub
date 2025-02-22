@@ -1,6 +1,7 @@
-import { getUser, getUserRepos } from '@/services'
-import { AxiosError } from 'axios'
 import { NextRequest, NextResponse } from 'next/server'
+import { AxiosError } from 'axios'
+import { getUser, getUserRepos, getUserStarred } from '@/services'
+import type { Repository } from '@/types'
 
 export async function GET(
   req: NextRequest,
@@ -21,12 +22,23 @@ export async function GET(
   try {
     const userRes = await getUser(user)
     const reposRes = await getUserRepos(user)
-
-    const response = {
-      user: userRes?.data,
-      repos: reposRes?.data
+    const favs = await getUserStarred()
+    if (reposRes?.data && favs) {
+      const repos = reposRes?.data?.map((repo: Repository) => {
+        return {
+          ...repo,
+          favorite: favs.some((fav) => fav.id === repo.id)
+        }
+      })
+      const response = {
+        user: userRes?.data,
+        repos
+      }
+      return new NextResponse(JSON.stringify(response), { status: 200 })
     }
-    return new NextResponse(JSON.stringify(response), { status: 200 })
+    return new NextResponse(JSON.stringify({ data: 'data not found' }), {
+      status: 404
+    })
   } catch (error) {
     if (error instanceof AxiosError) {
       return new NextResponse(error.message, { status: error.status })

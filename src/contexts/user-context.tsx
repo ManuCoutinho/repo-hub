@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import type { UserContextType, UserData } from '@/types'
 
 const INITIAL_STATE = {
@@ -30,6 +30,11 @@ export function UserContextProvider({
     }
     return
   }
+  useEffect(() => {
+    if (value === '') {
+      clear()
+    }
+  }, [value])
 
   return (
     <UserContext.Provider

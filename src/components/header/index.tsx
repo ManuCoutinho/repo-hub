@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 export default function Header() {
   const { push } = useRouter()
   return (
-    <header className='w-screen border border-transparent border-b-brand-border-line flex justify-between items-center overflow-hidden'>
+    <header className='w-full border border-transparent border-b-brand-border-line flex justify-between items-center overflow-hidden'>
       <UserForm />
       <div className=''>
         <button

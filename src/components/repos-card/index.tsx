@@ -1,14 +1,13 @@
 import dayjs from 'dayjs'
 import { cm, Icon } from '@/ui'
 import { mapLangColor } from './map-color'
-import type { Repository } from '@/types'
+import { RepoCardProps } from './type'
 
-export function ReposCard({ repo }: { repo: Readonly<Repository> }) {
+export function ReposCard({ repo, starred }: Readonly<RepoCardProps>) {
+  const color = mapLangColor(repo.language)
   const updatedAt = dayjs(repo.updated_at ?? repo.created_at).format(
     'DD MMM YYYY'
   )
-
-  const color = mapLangColor(repo.language)
 
   return (
     <div
@@ -21,12 +20,17 @@ export function ReposCard({ repo }: { repo: Readonly<Repository> }) {
         <button
           aria-label='star a repo'
           className={cm(
-            'size-10 rounded-full bg-brand-white-matte text-brand-placeholder',
+            'size-10 rounded-full ',
             'focus:ring focus:ring-brand-primary-light hover:brightness-90 transition-all',
-            'grid place-content-center'
+            'grid place-content-center',
+            {
+              'text-brand-primary border border-brand-primary bg-transparent':
+                starred,
+              'text-brand-placeholder, bg-brand-white-matte': !starred
+            }
           )}
         >
-          <Icon name='heart' size='sm' />
+          <Icon name={starred ? 'heartSolid' : 'heart'} size='sm' />
         </button>
       </div>
       <p className='text-sm text-brand-placeholder'>{repo.description}</p>

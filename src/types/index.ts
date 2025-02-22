@@ -7,6 +7,7 @@ export type Repository = {
   created_at: Date
   language: string | null
   stargazers_count: number
+  favorite: boolean
 }
 export type User = {
   avatar_url: string
