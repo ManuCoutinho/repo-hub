@@ -47,7 +47,7 @@ export function ReposCard({ repo, starred }: Readonly<RepoCardProps>) {
         </button>
       </div>
       <p className='text-sm text-brand-placeholder'>{repo.description}</p>
-      <div className='inline-flex gap-6 items-center text-xs mt-4'>
+      <div className='flex flex-col md:flex-row gap-2 md:gap-6 md:items-center text-xs mt-4'>
         {repo.language ? (
           <div className='inline-flex gap-2 items-center'>
             <span

@@ -12,4 +12,7 @@
   .heading-1 {
     @apply text-[21px] leading-8 font-semibold;
   }
+  .main-container {
+    @apply md:text-center text-pretty pt-8 md:pt-44 px-5 md:px-0;
+  }
 }

@@ -4,7 +4,7 @@ export default function User({ size }: { size: number }): JSX.Element {
       xmlns='http://www.w3.org/2000/svg'
       width={size}
       height={size}
-      viewBox='0 0 size 1536'
+      viewBox='0 0 1280 1536'
     >
       <path
         fill='currentColor'

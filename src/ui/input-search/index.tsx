@@ -1,12 +1,14 @@
 import { ForwardedRef, forwardRef } from 'react'
 import { cm, Icon } from '@/ui'
 import type { InputProps } from './types'
+import { useMediaMobile } from '@/hooks/useMediaMobile'
 
 const InputSearch = forwardRef(
   (
     { id, className, error, ...rest }: InputProps,
     ref?: ForwardedRef<HTMLInputElement>
   ) => {
+    const isMobile = useMediaMobile()
     return (
       <div>
         <label htmlFor={id} className='sr-only'>
@@ -29,7 +31,11 @@ const InputSearch = forwardRef(
             {...rest}
           />
           <span className='flex items-center absolute inset-y-0 end-4'>
-            <Icon name='search' className='text-brand-placeholder ' />
+            <Icon
+              name='search'
+              size={isMobile ? 'sm' : 'md'}
+              className='text-brand-placeholder'
+            />
           </span>
         </div>
       </div>
