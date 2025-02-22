@@ -5,7 +5,7 @@ import { normalizeString } from '@/utils/normalize-string'
 import { isValid } from '@/utils/validate-string'
 import { ApiException } from '@/lib'
 
-export async function getUserData(user: string) {
+export default async function getUserData(user: string) {
   if (isValid(user)) {
     const search = normalizeString(user)
 

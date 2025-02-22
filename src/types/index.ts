@@ -22,11 +22,9 @@ export type UserData = {
 }
 
 export type UserContextType = {
-  setError(arg: boolean): void
-  setData(data: UserData): void
-  clear(): void
   value: string
   setValue(arg: string): void
   data: UserData | null
   error: boolean
+  fetchData: () => Promise<void>
 }

@@ -1,17 +1,17 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useCallback, useEffect, useState } from 'react'
 import type { UserContextType, UserData } from '@/types'
+import { getUserData } from '@/services'
 
 const INITIAL_STATE = {
-  setData: () => null,
   data: null,
-  clear: () => null,
   error: false,
   value: '',
-  setValue: () => '',
-  setError: () => false
-} satisfies UserContextType
+  setValue: () => ''
+}
 
-export const UserContext = createContext<UserContextType>(INITIAL_STATE)
+export const UserContext = createContext<UserContextType>(
+  INITIAL_STATE as unknown as UserContextType
+)
 export function UserContextProvider({
   children
 }: {
@@ -36,15 +36,28 @@ export function UserContextProvider({
     }
   }, [value])
 
+  const fetchUserData = useCallback(async () => {
+    try {
+      setSearchError(false)
+      const data = await getUserData(value)
+      if (data) {
+        setData(data)
+      } else {
+        setSearchError(true)
+      }
+    } catch (error) {
+      clear()
+      setSearchError(!!error)
+    }
+  }, [value])
+
   return (
     <UserContext.Provider
       value={{
-        setData,
-        clear,
+        fetchData: fetchUserData,
         data: userData,
         value,
         setValue,
-        setError: setSearchError,
         error: searchError
       }}
     >

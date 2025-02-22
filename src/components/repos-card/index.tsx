@@ -1,14 +1,23 @@
+'use client'
+import { useTransition } from 'react'
 import dayjs from 'dayjs'
 import { cm, Icon } from '@/ui'
 import { mapLangColor } from './map-color'
 import { RepoCardProps } from './type'
+import { useStarRepo } from '@/hooks/useStarRepo'
 
 export function ReposCard({ repo, starred }: Readonly<RepoCardProps>) {
+  const [isPending, onAction] = useTransition()
+  const { toggleStarRepo } = useStarRepo(repo.full_name, starred)
   const color = mapLangColor(repo.language)
   const updatedAt = dayjs(repo.updated_at ?? repo.created_at).format(
     'DD MMM YYYY'
   )
 
+  const icon = () => {
+    if (isPending) return 'loading'
+    return starred ? 'heartSolid' : 'heart'
+  }
   return (
     <div
       className={cm('w-full p-4 border border-brand-border-line rounded mb-4')}
@@ -18,19 +27,23 @@ export function ReposCard({ repo, starred }: Readonly<RepoCardProps>) {
           {repo.name}
         </p>
         <button
-          aria-label='star a repo'
+          onClick={() => onAction(() => toggleStarRepo())}
+          disabled={isPending}
+          aria-busy={isPending}
+          aria-label='toggle star repo'
           className={cm(
             'size-10 rounded-full ',
-            'focus:ring focus:ring-brand-primary-light hover:brightness-90 transition-all',
+            'focus:ring focus:ring-brand-primary-light transition-all hover:brightness-90 disabled:pointer-events-none',
             'grid place-content-center',
             {
               'text-brand-primary border border-brand-primary bg-transparent':
                 starred,
-              'text-brand-placeholder, bg-brand-white-matte': !starred
+              'text-brand-placeholder, bg-brand-white-matte': !starred,
+              'animate-spin': isPending
             }
           )}
         >
-          <Icon name={starred ? 'heartSolid' : 'heart'} size='sm' />
+          <Icon name={icon()} size='sm' />
         </button>
       </div>
       <p className='text-sm text-brand-placeholder'>{repo.description}</p>
