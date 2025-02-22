@@ -22,9 +22,9 @@ export function Search() {
             alt='ilustração contendo uma mulher segurando uma lupa em busca de pessoas'
             width={230}
             height={257}
-              className='mx-auto invisible md:visible'
-              loading='lazy'
-            />
+            className='mx-auto invisible md:visible'
+            loading='lazy'
+          />
         )}
       </div>
     </div>
