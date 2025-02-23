@@ -6,7 +6,7 @@ const config: Config = {
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
-  testEnvironment: 'jsdom',
+  testEnvironment: 'jest-environment-jsdom',
   rootDir: './src',
   moduleDirectories: ['node_modules', 'src/'],
   testMatch: ['**/tests/**/*.[t]s?(x)', '**/?(*.)+(spec|test|tests).[tj]s?(x)'],
@@ -16,7 +16,7 @@ const config: Config = {
     '<rootDir>/.out/',
     '/public/'
   ],
-  setupFilesAfterEnv: ['<rootDir>/tests/jest.setup.ts'],
+  setupFilesAfterEnv: ['../jest.setup.ts'],
   transformIgnorePatterns: ['/node_modules/']
 }
 

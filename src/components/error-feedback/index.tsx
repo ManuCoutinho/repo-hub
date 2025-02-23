@@ -22,7 +22,7 @@ export function ErrorFeedback({ term }: { term: string }) {
       <div className='size-full mt-12'>
         <Image
           src={notFoundImg}
-          alt='ilustração contendo bonequinhos sendo sugados para um disco voador com detalhes verde claro '
+          alt='ilustração contendo bonequinhos sendo sugados para um disco voador com detalhes verde claro'
           width={399}
           height={438}
           loading='lazy'

@@ -7,6 +7,7 @@ export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ user: string }> }
 ) {
+  const userNameRegex = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i
   if (req.method !== 'GET') {
     return new NextResponse(JSON.stringify({ data: 'method not allowed' }), {
       status: 405
@@ -18,6 +19,15 @@ export async function GET(
     return new NextResponse(JSON.stringify({ data: '[user] is required' }), {
       status: 400
     })
+  }
+
+  if (!userNameRegex.test(user)) {
+    return new NextResponse(
+      JSON.stringify({ data: 'search parameter malformation' }),
+      {
+        status: 400
+      }
+    )
   }
   try {
     const userRes = await getUser(user)
