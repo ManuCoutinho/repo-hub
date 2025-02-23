@@ -9,7 +9,10 @@ export function ErrorFeedback({ term }: { term: string }) {
     <div className='main-container text-center'>
       {isMobile ? <UserForm /> : null}
       {term ? (
-        <p className='text-brand-primary heading-1 mt-6 md:mt-0'>
+        <p
+          data-testid='searched-name'
+          className='text-brand-primary heading-1 mt-6 md:mt-0'
+        >
           &quot;{term}&quot;
         </p>
       ) : null}
@@ -26,6 +29,8 @@ export function ErrorFeedback({ term }: { term: string }) {
           width={399}
           height={438}
           loading='lazy'
+          hidden={isMobile}
+          aria-hidden={isMobile}
           className='mx-auto invisible md:visible'
         />
       </div>

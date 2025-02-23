@@ -3,8 +3,8 @@ export type Repository = {
   name: string
   full_name: string
   description: string | null
-  updated_at: Date
-  created_at: Date
+  updated_at: string
+  created_at: string
   language: string | null
   stargazers_count: number
   favorite: boolean

@@ -21,6 +21,7 @@ export function ReposCard({ repo, starred }: Readonly<RepoCardProps>) {
   return (
     <div
       className={cm('w-full p-4 border border-brand-border-line rounded mb-4')}
+      data-testid='repository-card'
     >
       <div className='w-full flex items-center justify-between'>
         <p className='font-semibold text-brand-grey-neutral text-lg mb-[6px]'>
